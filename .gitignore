@@ -1,0 +1,4 @@
+*.pyc
+.vscode/
+weights/*.ckpt
+**__pycache__**

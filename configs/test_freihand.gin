@@ -1,0 +1,18 @@
+# ======= DATA MODULE =======
+fetch_dataset.dataset = @FreiHAND()
+FreiHAND.input_size = 224
+FreiHAND.rectify_input_image = True
+FreiHAND.canonical_focal = 1000
+FreiHAND.canonical_ppt = 112
+
+# ======= RUNNER =======
+fetch_runner.runner = @HandDGPRunner()
+HandDGPRunner.batch_size = 96
+HandDGPRunner.latent_size = 256
+HandDGPRunner.spiral_len = (9, 9, 9, 9)
+HandDGPRunner.spiral_dilation = (1, 1, 1, 1)
+HandDGPRunner.spiral_out_channels = (32, 64, 128, 256)
+HandDGPRunner.imagenet_pretrain = True
+HandDGPRunner.ckpt_pretrain= "weights/handdgp_freihand.ckpt"
+HandDGPRunner.variant= "resnet50"
+HandDGPRunner.input_size= 224

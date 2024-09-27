@@ -1,0 +1,9 @@
+[project]
+name = "handdgp"
+version = "0.1.0"
+description = "HandDGP: Camera-Space Hand Mesh Prediction with Differentiable Global Positioning (ECCV 2024)"
+readme = "README.md"
+keywords = ["computer-vision", "hand-tracking", "hand-mesh", "ECCV-2024"]
+
+[project.license]
+file = "LICENSE"

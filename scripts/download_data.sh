@@ -1,0 +1,13 @@
+#!/bin/bash
+ZIP_URL="https://lmb.informatik.uni-freiburg.de/data/freihand/FreiHAND_pub_v2_eval.zip"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+DEST_DIR="$PROJECT_ROOT/data/freihand/FreiHAND_pub_v2_eval"
+mkdir -p "$DEST_DIR"
+TEMP_ZIP="$DEST_DIR/FreiHAND_pub_v2_eval.zip"
+echo "Downloading FreiHAND_pub_v2_eval.zip..."
+curl -L -o "$TEMP_ZIP" "$ZIP_URL"
+echo "Unzipping the file to $DEST_DIR..."
+unzip -q "$TEMP_ZIP" -d "$DEST_DIR"
+rm "$TEMP_ZIP"
+echo "Download and extraction complete."

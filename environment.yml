@@ -1,0 +1,21 @@
+name: handdgp
+channels:
+  - pytorch
+  - nvidia
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.9
+  - numpy=1.22.3
+  - pytorch=2.0.1
+  - torchvision=0.15.2
+  - pytorch-cuda=11.8
+  - loguru=0.6.0
+  - gin-config=0.5
+  - kornia=0.6.11
+  - timm=0.6.13
+  - scipy=1.10.1
+  - pip
+  - pip:
+      - torch-geometric==2.3.0
+      - opencv-contrib-python==4.7.0.72
