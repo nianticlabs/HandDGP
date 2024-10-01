@@ -19,3 +19,4 @@ dependencies:
   - pip:
       - torch-geometric==2.3.0
       - opencv-contrib-python==4.7.0.72
+      - openmesh==1.2.1

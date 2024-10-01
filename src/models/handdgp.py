@@ -12,7 +12,6 @@ from torchvision import transforms
 from src.models import PARAMS
 from src.models.decoder_3d import Decoder3D
 from src.models.dgp import dgp
-from src.utils import batch_project
 
 __all__ = ["HandDGP"]
 
@@ -183,8 +182,8 @@ class HandDGP(nn.Module):
         kpts3d_cs = torch.bmm(self.j_reg.repeat(current_batch, 1, 1), verts3d_cs)
 
         # Project vertices and keypoints from 3D to 2D
-        vertices_2d_from_3d = batch_project(verts3d_cs, intrinsics[:, :3, :3])
-        kpts_2d_from_3d = batch_project(kpts3d_cs, intrinsics[:, :3, :3])
+        vertices_2d_from_3d = self.batch_project(verts3d_cs, intrinsics[:, :3, :3])
+        kpts_2d_from_3d = self.batch_project(kpts3d_cs, intrinsics[:, :3, :3])
 
         return (
             kpts_2d,
@@ -215,6 +214,22 @@ class HandDGP(nn.Module):
         )
 
         return samples.squeeze(-1).reshape(uv2.shape[0], -1)
+
+    @staticmethod
+    def batch_project(P: torch.Tensor, K: torch.Tensor) -> torch.Tensor:
+        """
+        Project a batch of 3D points P into 2D using camera matrix K.
+
+        Args:
+            P (torch.Tensor): A batch of 3D points with shape (batch_size, num_points, 3).
+            K (torch.Tensor): A batch of camera matrices with shape (batch_size, 3, 3).
+
+        Returns:
+            torch.Tensor: Projected 2D points with shape (batch_size, num_points, 2).
+        """
+        P_projected_ = torch.bmm(K, P.permute(0, 2, 1))
+        P_projected = P_projected_[:, :2, :] / P_projected_[:, 2:, :]
+        return P_projected.permute(0, 2, 1)
 
     def forward(
         self,

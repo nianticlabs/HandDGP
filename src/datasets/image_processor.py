@@ -5,22 +5,6 @@ import numpy as np
 import torch
 
 
-def batch_project(P: torch.Tensor, K: torch.Tensor) -> torch.Tensor:
-    """
-    Project a batch of 3D points P into 2D using camera matrix K.
-
-    Args:
-        P (torch.Tensor): A batch of 3D points with shape (batch_size, num_points, 3).
-        K (torch.Tensor): A batch of camera matrices with shape (batch_size, 3, 3).
-
-    Returns:
-        torch.Tensor: Projected 2D points with shape (batch_size, num_points, 2).
-    """
-    P_projected_ = torch.bmm(K, P.permute(0, 2, 1))
-    P_projected = P_projected_[:, :2, :] / P_projected_[:, 2:, :]
-    return P_projected.permute(0, 2, 1)
-
-
 @gin.configurable
 class ImageProcessor:
     def __init__(self):

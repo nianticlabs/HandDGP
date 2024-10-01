@@ -10,7 +10,7 @@ from PIL import Image
 from third_party.HandMesh.utils.preprocessing import generate_patch_image
 from torch.utils.data import Dataset
 
-from src.utils import ImageProcessor
+from src.datasets.image_processor import ImageProcessor
 
 
 @gin.configurable
