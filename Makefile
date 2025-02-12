@@ -2,7 +2,7 @@ SHELL = /bin/bash
 
 SYSTEM_NAME := $(shell uname)
 SYSTEM_ARCHITECTURE := $(shell uname -m)
-MAMBA_INSTALL_SCRIPT := Miniforge-pypy3-$(SYSTEM_NAME)-$(SYSTEM_ARCHITECTURE).sh
+MAMBA_INSTALL_SCRIPT := Miniforge3-$(SYSTEM_NAME)-$(SYSTEM_ARCHITECTURE).sh
 
 MAMBA_ENV_NAME := handdgp
 PACKAGE_FOLDER := src/handdgp
